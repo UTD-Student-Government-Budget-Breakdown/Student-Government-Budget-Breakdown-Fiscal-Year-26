@@ -62,7 +62,7 @@
 ],
 
 "FY26_MandatoryFees": [
-  { "category": "Green Fee", "amount": 29901203, "color": "#00b18b" },
+  { "category": "Green Fee", "amount": 293000, "color": "#00b18b" },
   { "category": "Advising Fee", "amount": 15274245, "color": "#0bbbbb" },
   { "category": "Infrastructure Fee", "amount": 14658576, "color": "#bb0b0b" },
   { "category": "Student Business Services Fee", "amount": 13160565, "color": "#b10026" },
@@ -75,7 +75,7 @@
   { "category": "Athletic Program Fee", "amount": 2797885, "color": "#2ad8fc" },
   { "category": "Transportation Fee", "amount": 1110000, "color": "#1ae3e1" },
   { "category": "Exemption", "amount": 641687, "color": "#0bbbbb" },
-  { "category": "Information Technology Fee", "amount": 293000, "color": "#00b18b" }
+  { "category": "Information Technology Fee", "amount": 29901203, "color": "#00b18b" }
 ],
 
 "FY26_ProgramCourseOtherFees": [
