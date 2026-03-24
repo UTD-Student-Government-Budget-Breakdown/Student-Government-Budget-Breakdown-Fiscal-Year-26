@@ -187,7 +187,8 @@ am5.ready(function() {
 
             if (!data25 || !data26) { console.error(`Missing data: ${datasetKey25} or ${datasetKey26}`); return; }
 
-            // 3. Sort Data (High to Low)
+            assignColors(data25);
+            assignColors(data26);
             data25.sort((a, b) => a[amountKey] - b[amountKey]);
             data26.sort((a, b) => a[amountKey] - b[amountKey]);
 
@@ -478,10 +479,10 @@ function buildBOTGraphs(divID, datasetKey, isExpense) {
             // =====================
             // BUILD SERIES PER TYPE
             // =====================
-            types.forEach(type => {
+            types.forEach((type, i) => {
 
                 const typeData = rawData.filter(d => d[typeKey] === type);
-                const typeColor = rawData.find(d => d[typeKey] === type)?.color;
+                const typeColor = getSequenceColor(i);
                 
                 console.log(`Building series for ${type} with data:`, typeData);
                 // ---- STACKED BAR SERIES ----
@@ -630,6 +631,7 @@ function buildBOTGraphs(divID, datasetKey, isExpense) {
             .then(fullData => {
 
                 let data = fullData["Expenses_By_School"];
+                data.forEach(item => { item.color = SCHOOL_COLORS[item.school] || getSequenceColor(0); });
 
                 data.sort((a, b) => a.expenseAmount - b.expenseAmount);
 
@@ -836,6 +838,7 @@ function buildBOTGraphs(divID, datasetKey, isExpense) {
             let currentData = fullData[datasetKey];
             if(!currentData) { console.error("Missing data:", datasetKey); return; }
 
+            assignColors(currentData);
             series.data.setAll(currentData);
             xAxis.data.setAll(currentData);
 
@@ -944,6 +947,7 @@ function buildBOTGraphs(divID, datasetKey, isExpense) {
             let currentData = fullData[datasetKey];
             if(!currentData) { console.error("Missing data:", datasetKey); return; }
 
+            assignColors(currentData);
             currentData.sort((a, b) => a.amount - b.amount);
             let totalVal = getTotal(currentData, "amount");
 
@@ -1085,10 +1089,10 @@ function buildBOTGraphs(divID, datasetKey, isExpense) {
         legend.valueLabels.template.set("forceHidden", true);
 
         var seriesDefs = [
-            { field: "BudgetedExpenses", name: "Budgeted Expenses", color: "#00b18b" },
-            { field: "DebtService",      name: "Debt Service",      color: "#2ad8fc" },
-            { field: "TotalTransfers",   name: "Total Transfers",   color: "#fd8d3c" },
-            { field: "Revenue",          name: "Revenue",           color: "#3cacfd" }
+            { field: "BudgetedExpenses", name: "Budgeted Expenses", color: PALETTE.teal },
+            { field: "DebtService",      name: "Debt Service",      color: PALETTE.skyBlue },
+            { field: "TotalTransfers",   name: "Total Transfers",   color: PALETTE.orange },
+            { field: "Revenue",          name: "Revenue",           color: PALETTE.blue }
         ];
 
         fetch("data.json")
