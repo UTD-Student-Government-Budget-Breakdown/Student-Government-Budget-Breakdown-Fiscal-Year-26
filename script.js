@@ -9,7 +9,7 @@ am5.ready(function() {
     const applyColor = (graphics, target) =>
         target.dataItem?.dataContext?.color ? am5.color(target.dataItem.dataContext.color) : graphics;
 
-    function buildFY26Graphs(divID, datasetKey, isExpense) {
+    function buildFY26Graphs(divID, datasetKey, isExpense, directData) {
 
         var root = am5.Root.new(divID);
         root.setThemes([ am5themes_Animated.new(root) ]);
@@ -91,13 +91,7 @@ am5.ready(function() {
             return target.dataItem.get("valuePercentTotal") < 1.5 ? true : forceHidden;
         });
 
-        fetch("data.json")
-        .then(response => response.json())
-        .then(fullData => {
-
-            let currentData = fullData[datasetKey];
-            if(!currentData) { console.error("Missing data:", datasetKey); return; }
-
+        const processChartData = (currentData) => {
             assignColors(currentData);
             currentData.sort((a, b) => a[amountKey] - b[amountKey]);
 
@@ -113,7 +107,19 @@ am5.ready(function() {
 
             pieSeries.appear(1000, 100);
             barSeries.appear(1000, 100);
-        });
+        };
+
+        if (directData) {
+            processChartData(directData);
+        } else {
+            fetch("data.json")
+            .then(response => response.json())
+            .then(fullData => {
+                let currentData = fullData[datasetKey];
+                if(!currentData) { console.error("Missing data:", datasetKey); return; }
+                processChartData(currentData);
+            });
+        }
     }
 
     function buildComparison(divId25, divId26, datasetKey25, datasetKey26, isExpense) {
@@ -424,17 +430,33 @@ am5.ready(function() {
     }
 
     var schoolDatasetMap = {
-        "chart_JSOM_Expenses": "JSOM_Expense",
-        "chart_NSM_Expenses":  "NSM_Expense",
-        "chart_AHT_Expenses":  "AHT_Expense",
-        "chart_BBS_Expenses":  "BBS_Expense",
-        "chart_EPPS_Expenses": "EPPS_Expense",
-        "chart_IS_Expenses":   "IS_Expense"
+        "chart_JSOM_Expenses": "JSOM",
+        "chart_NSM_Expenses":  "NSM",
+        "chart_AHT_Expenses":  "AHT",
+        "chart_BBS_Expenses":  "BBS",
+        "chart_EPPS_Expenses": "EPPS",
+        "chart_IS_Expenses":   "IS",
+        "chart_ECS_Expenses":  "ECS"
     };
 
     function buildExpensesGraphs(divID) {
-        var datasetKey = schoolDatasetMap[divID];
-        if (datasetKey) buildFY26Graphs(divID, datasetKey, true);
+        var schoolName = schoolDatasetMap[divID];
+        if (!schoolName) return;
+
+        fetch("data.json")
+        .then(res => res.json())
+        .then(fullData => {
+            var hierarchy = fullData["School_Expenses_Hierarchy"];
+            var school = hierarchy.find(s => s.name === schoolName);
+            if (!school || !school.children) return;
+
+            var expenseData = school.children.map(child => ({
+                expenseType: child.name,
+                expenseAmount: child.value
+            }));
+
+            buildFY26Graphs(divID, null, true, expenseData);
+        });
     }
 
     function buildRevenueGraphs(divID) {
@@ -456,7 +478,11 @@ am5.ready(function() {
         .then(res => res.json())
         .then(fullData => {
 
-            let data = fullData["Expenses_By_School"];
+            let hierarchy = fullData["School_Expenses_Hierarchy"];
+            let data = hierarchy.map(s => ({
+                school: s.name,
+                expenseAmount: s.value
+            }));
             data.forEach(item => { item.color = SCHOOL_COLORS[item.school] || getSequenceColor(0); });
             data.sort((a, b) => a.expenseAmount - b.expenseAmount);
 

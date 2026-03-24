@@ -1,22 +1,4 @@
 {
-  "_disclaimer": "Each expense amount = expense - revenue --> so expenseAmount = netExpenseAmount",
-
-  "ecs_Expense": [
-    { "expenseType": "Analog Center", "expenseAmount": 546317 },
-    { "expenseType": "Bioengineering", "expenseAmount": 1931569 },
-    { "expenseType": "Computer Science", "expenseAmount": 4029026 },
-    { "expenseType": "ECS Student Services", "expenseAmount": 2463311 },
-    { "expenseType": "Electrical & Computer Engineering", "expenseAmount": 1978080 },
-    { "expenseType": "Engineering & Computer Science", "expenseAmount": 9947592 },
-    { "expenseType": "Material Science Engineering", "expenseAmount": 695755 },
-    { "expenseType": "Mechanical Engineering", "expenseAmount": 2473002 },
-    { "expenseType": "System Engineering", "expenseAmount": 1223970 },
-    { "expenseType": "Salaries & Wages (Education)", "expenseAmount": 35910262 },
-    { "expenseType": "Salaries & Wages (Research)", "expenseAmount": 1318993 },
-    { "expenseType": "Other Research Expenses", "expenseAmount": 7992000.00 }
-  ],
-
-
   "_section1": "Data for Fiscal Year 2026 Page",
 
   "FY26_Expense": [
@@ -450,88 +432,121 @@
 
 "_section5": "Data for Budget by School Page",
 
-"JSOM_Expense":[
-  { "expenseType": "Salaries & Wages (Education)", "expenseAmount": 21889331 },
-  { "expenseType": "Other Research Expenses", "expenseAmount": 306000 },
-  { "expenseType": "Accounting & Business Law Rese", "expenseAmount": 368500 },
-  { "expenseType": "Cohort MBA", "expenseAmount": 160000 },
-  { "expenseType": "Ctr Excellence In Corp Govern", "expenseAmount": 68802 },
-  { "expenseType": "Ctr Innov & Entrepreneurship", "expenseAmount": 44769 },
-  { "expenseType": "Ctr Intelligent Supply Network", "expenseAmount": 2476 },
-  { "expenseType": "Executive Education", "expenseAmount": 1301620 },
-  { "expenseType": "Finance & MgrlEcon Research", "expenseAmount": 450500 },
-  { "expenseType": "Healthcare Management Research", "expenseAmount": 54500 },
-  { "expenseType": "Information Systems", "expenseAmount": 429500 },
-  { "expenseType": "Management", "expenseAmount": 52139217 },
-  { "expenseType": "Management External Affairs", "expenseAmount": 207135 },
-  { "expenseType": "Marketing Research", "expenseAmount": 267000 },
-  { "expenseType": "Operations Management", "expenseAmount": 353995 },
-  { "expenseType": "Org, Strategy & Intnl Mgt Research", "expenseAmount": 326000 },
-  { "expenseType": "Other Research", "expenseAmount": 100002 }
-],
-
-"NSM_Expense":[
-  { "expenseType": "Salaries & Wages (Education)", "expenseAmount": 23000656 },
-  { "expenseType": "Salaries & Wages (Research)", "expenseAmount": 80340 },
-  { "expenseType": "Other Research Expenses", "expenseAmount": 2833086 },
-  { "expenseType": "Biological Sciences", "expenseAmount": 1940941 },
-  { "expenseType": "Chemistry", "expenseAmount": 1282299 },
-  { "expenseType": "Mathematical Sciences", "expenseAmount": 1820320 },
-  { "expenseType": "NS&M Deans Office", "expenseAmount": 4969524 },
-  { "expenseType": "Nanotech Institute", "expenseAmount": 126935 },
-  { "expenseType": "Physics", "expenseAmount": 1033290 },
-  { "expenseType": "Science/Math Education", "expenseAmount": 302632 },
-  { "expenseType": "Space Sciences", "expenseAmount": 431495 },
-  { "expenseType": "Sustain Earth Systems Science", "expenseAmount": 514821 }
-],
-
-"AHT_Expense":[
-  { "expenseType": "Salaries & Wages (Education)", "expenseAmount": 12837254 },
-  { "expenseType": "Other Research Expenses", "expenseAmount": 163000 }
-],
-
-"BBS_Expense": [
-    { "expenseType": "Salaries and Wages (Education)", "expenseAmount": 10975474 },
-    { "expenseType": "Salaries and Wages (Research)", "expenseAmount": 518028 },
-    { "expenseType": "Other Research Expenses", "expenseAmount": 1237000 },
-    { "expenseType": "Behavioral and Brain Sciences", "expenseAmount": 6612333 },
-    { "expenseType": "Neuroscience", "expenseAmount": 1732326 },
-    { "expenseType": "Psychology", "expenseAmount": 1379355 },
-    { "expenseType": "Speech Language Hearing", "expenseAmount": 884563 }
-],
-
-"EPPS_Expense": [
-    { "expenseType": "Salaries and Wages (Education)", "expenseAmount": 8250727 },
-    { "expenseType": "Other Research Expenses", "expenseAmount": 192000 },
-    { "expenseType": "Political Science", "expenseAmount": 50077 },
-    { "expenseType": "Economic Political and Policy", "expenseAmount": 5833698 },
-    { "expenseType": "Geography & Geospatial", "expenseAmount": 2055 },
-    { "expenseType": "IPE-PPE", "expenseAmount": 2313 },
-    { "expenseType": "Institute for Urban Policy", "expenseAmount": 1184 },
-    { "expenseType": "Public & Nonprofit Management", "expenseAmount": 356 },
-    { "expenseType": "Sociology", "expenseAmount": 467 },
-    { "expenseType": "Texas Schools Project", "expenseAmount": 59067 }
-],
-
-"IS_Expense": [
-    { "expenseType": "Salaries and Wages (Education)", "expenseAmount": 1639304 },
-    { "expenseType": "Interdisciplinary Studies", "expenseAmount": 1057662 }
+"School_Expenses_Hierarchy": [
+  {
+    "name": "ECS",
+    "value": 62517877,
+    "children": [
+      { "name": "Analog Center", "value": 546317 },
+      { "name": "Bioengineering", "value": 1931569 },
+      { "name": "Computer Science", "value": 4029026 },
+      { "name": "ECS Student Services", "value": 2463311 },
+      { "name": "Electrical & Computer Engineering", "value": 1978080 },
+      { "name": "Engineering & Computer Science", "value": 9947592 },
+      { "name": "Material Science Engineering", "value": 695755 },
+      { "name": "Mechanical Engineering", "value": 2473002 },
+      { "name": "System Engineering", "value": 1223970 },
+      { "name": "Salaries & Wages (Education)", "value": 35910262 },
+      { "name": "Salaries & Wages (Research)", "value": 1318993 },
+      { "name": "Other Research Expenses", "value": 7992000 }
+    ]
+  },
+  {
+    "name": "JSOM",
+    "value": 75861155,
+    "children": [
+      { "name": "Salaries & Wages (Education)", "value": 21889331 },
+      { "name": "Other Research Expenses", "value": 306000 },
+      { "name": "Accounting & Business Law Rese", "value": 368500 },
+      { "name": "Cohort MBA", "value": 160000 },
+      { "name": "Ctr Excellence In Corp Govern", "value": 68802 },
+      { "name": "Ctr Innov & Entrepreneurship", "value": 44769 },
+      { "name": "Ctr Intelligent Supply Network", "value": 2476 },
+      { "name": "Executive Education", "value": 1301620 },
+      { "name": "Finance & MgrlEcon Research", "value": 450500 },
+      { "name": "Healthcare Management Research", "value": 54500 },
+      { "name": "Information Systems", "value": 429500 },
+      { "name": "Management", "value": 52139217 },
+      { "name": "Management External Affairs", "value": 207135 },
+      { "name": "Marketing Research", "value": 267000 },
+      { "name": "Operations Management", "value": 353995 },
+      { "name": "Org, Strategy & Intnl Mgt Research", "value": 326000 },
+      { "name": "Other Research", "value": 100002 }
+    ]
+  },
+  {
+    "name": "NSM",
+    "value": 38144913,
+    "children": [
+      { "name": "Salaries & Wages (Education)", "value": 23000656 },
+      { "name": "Salaries & Wages (Research)", "value": 80340 },
+      { "name": "Other Research Expenses", "value": 2833086 },
+      { "name": "Biological Sciences", "value": 1940941 },
+      { "name": "Chemistry", "value": 1282299 },
+      { "name": "Mathematical Sciences", "value": 1820320 },
+      { "name": "NS&M Deans Office", "value": 4969524 },
+      { "name": "Nanotech Institute", "value": 126935 },
+      { "name": "Physics", "value": 1033290 },
+      { "name": "Science/Math Education", "value": 302632 },
+      { "name": "Space Sciences", "value": 431495 },
+      { "name": "Sustain Earth Systems Science", "value": 514821 }
+    ]
+  },
+  {
+    "name": "AHT",
+    "value": 13000254,
+    "children": [
+      { "name": "Salaries & Wages (Education)", "value": 12837254 },
+      { "name": "Other Research Expenses", "value": 163000 }
+    ]
+  },
+  {
+    "name": "BBS",
+    "value": 23339079,
+    "children": [
+      { "name": "Salaries and Wages (Education)", "value": 10975474 },
+      { "name": "Salaries and Wages (Research)", "value": 518028 },
+      { "name": "Other Research Expenses", "value": 1237000 },
+      { "name": "Behavioral and Brain Sciences", "value": 6612333 },
+      { "name": "Neuroscience", "value": 1732326 },
+      { "name": "Psychology", "value": 1379355 },
+      { "name": "Speech Language Hearing", "value": 884563 }
+    ]
+  },
+  {
+    "name": "EPPS",
+    "value": 14291790,
+    "children": [
+      { "name": "Salaries and Wages (Education)", "value": 8250727 },
+      { "name": "Other Research Expenses", "value": 192000 },
+      { "name": "Political Science", "value": 50077 },
+      { "name": "Economic Political and Policy", "value": 5833698 },
+      { "name": "Geography & Geospatial", "value": 2055 },
+      { "name": "IPE-PPE", "value": 2313 },
+      { "name": "Institute for Urban Policy", "value": 1184 },
+      { "name": "Public & Nonprofit Management", "value": 356 },
+      { "name": "Sociology", "value": 467 },
+      { "name": "Texas Schools Project", "value": 59067 }
+    ]
+  },
+  {
+    "name": "IS",
+    "value": 2696966,
+    "children": [
+      { "name": "Salaries and Wages (Education)", "value": 1639304 },
+      { "name": "Interdisciplinary Studies", "value": 1057662 }
+    ]
+  },
+  {
+    "name": "Other Instructional Support",
+    "value": 16347257,
+    "children": []
+  }
 ],
 
 "AHT_Revenue":[
   { "revenueType": "Art and Performance", "revenueAmount": 117000 },
   { "revenueType": "Arts Humanities & Technology", "revenueAmount": 9065300 },
   { "revenueType": "Centers For Values", "revenueAmount": 5100 }
-],
-
-"Expenses_By_School":[
-  { "school": "BBS", "expenseAmount": 23339079 },
-  { "school": "ECS", "expenseAmount": 62517877 },
-  { "school": "EPPS", "expenseAmount": 14291790 },
-  { "school": "IS", "expenseAmount": 2696966 },
-  { "school": "JSOM", "expenseAmount": 75861155 },
-  { "school": "NSM", "expenseAmount": 38144913 },
-  { "school": "AHT", "expenseAmount": 13000254 },
-  { "school": "Other Instructional Support", "expenseAmount": 16347257 }
 ]
 }
