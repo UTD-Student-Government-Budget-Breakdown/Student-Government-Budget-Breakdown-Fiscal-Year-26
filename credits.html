@@ -31,26 +31,18 @@
 
             <section class="credits-content">
                 <div class="credits-section">
-                    <h2>Contributors</h2>
+                    <h2>Leadership</h2>
                     <div id="contributors-list" class="people-grid">
                         <!-- Contributors will be loaded here from people.json -->
                     </div>
                 </div>
 
                 <div class="credits-section">
-                    <h2>Acknowledgments</h2>
-                    <div id="acknowledgments-list" class="people-grid">
-                        <!-- Acknowledgments will be loaded here from people.json -->
-                    </div>
-                </div>
-
-                <div class="credits-section">
-                    <h2>Technologies Used</h2>
+                    <h2>Useful Links</h2>
                     <div class="tech-list">
                         <ul>
-                            <li><strong><a href="https://www.amcharts.com/" target="_blank">AMCharts 5</a></strong> - Interactive data visualizations</li>
-                            <li><strong><a href="https://developer.mozilla.org/" target="_blank">HTML/CSS/JavaScript</a></strong> - Core web technologies</li>
-                            <li><strong><a href="https://www.json.org/" target="_blank">JSON</a></strong> - Data storage and management</li>
+                            <li><strong><a href="https://sg.utdallas.edu/" target="_blank">Student Government</a></strong></li>
+                            <li><strong><a href="https://finance.utdallas.edu/for-others/public-reports/" target="_blank">UTD Public Budget Information</a></strong></li>
                         </ul>
                     </div>
                 </div>
@@ -68,24 +60,16 @@
                 data.contributors.forEach(person => {
                     const card = document.createElement('div');
                     card.className = 'person-card';
+
+                    // Only create image HTML if image path exists
+                    const imageHtml = person.image ? `<img src="${person.image}" alt="${person.name}" class="person-img">` : '';
+                    
                     card.innerHTML = `
+                        ${imageHtml}
                         <h3>${person.name}</h3>
                         <p class="role">${person.role}</p>
-                        <p class="description">${person.description}</p>
                     `;
                     contributorsContainer.appendChild(card);
-                });
-
-                // Render acknowledgments
-                const acknowledgementsContainer = document.getElementById('acknowledgments-list');
-                data.acknowledgments.forEach(org => {
-                    const card = document.createElement('div');
-                    card.className = 'person-card';
-                    card.innerHTML = `
-                        <h3>${org.name}</h3>
-                        <p class="description">${org.description}</p>
-                    `;
-                    acknowledgementsContainer.appendChild(card);
                 });
             })
             .catch(error => {
