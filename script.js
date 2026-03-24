@@ -187,8 +187,15 @@ am5.ready(function() {
 
             if (!data25 || !data26) { console.error(`Missing data: ${datasetKey25} or ${datasetKey26}`); return; }
 
-            assignColors(data25);
-            assignColors(data26);
+            var categorySet = new Set();
+            data25.forEach(function(item) { categorySet.add(item[categoryKey]); });
+            data26.forEach(function(item) { categorySet.add(item[categoryKey]); });
+            var colorMap = {};
+            Array.from(categorySet).forEach(function(category, index) {
+                colorMap[category] = getSequenceColor(index);
+            });
+            data25.forEach(function(item) { item.color = colorMap[item[categoryKey]]; });
+            data26.forEach(function(item) { item.color = colorMap[item[categoryKey]]; });
             data25.sort((a, b) => a[amountKey] - b[amountKey]);
             data26.sort((a, b) => a[amountKey] - b[amountKey]);
 
