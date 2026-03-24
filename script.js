@@ -1,5 +1,8 @@
-// Helper for totals
 function getTotal(dataArray, key) {return dataArray.reduce((sum, item) => sum + (item[key] || 0), 0)}
+
+function assignColors(data) {
+    data.forEach((item, i) => { item.color = getSequenceColor(i); });
+}
 
 am5.ready(function() {
 
@@ -138,7 +141,7 @@ am5.ready(function() {
             let currentData = fullData[datasetKey];
             if(!currentData) { console.error("Missing data:", datasetKey); return; }
 
-            // Sort data and thus bars
+            assignColors(currentData);
             currentData.sort((a, b) => a[amountKey] - b[amountKey]);
 
             // Create Label with calculated total
