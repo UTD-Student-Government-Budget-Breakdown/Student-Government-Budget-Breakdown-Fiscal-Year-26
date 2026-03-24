@@ -25,7 +25,7 @@ body {
 /* --- Sidebar Styling --- */
 .sidebar {
     width: 250px;
-    background-color: #2c3e50; /* Dark Navy */
+    background-color: #154734; 
     color: white;
     display: flex;
     flex-direction: column;
@@ -33,11 +33,18 @@ body {
     flex-shrink: 0; /* Prevents sidebar from shrinking on small screens */
 }
 
+/* Adjust the hover/active state so it's visible against orange */
+.sidebar a:hover, .sidebar a.active {
+    background-color: #C66300; /* A slightly darker orange for contrast */
+    color: #ffffff;
+    padding-left: 20px;
+}
+
 .sidebar h2 {
     text-align: center;
     margin-bottom: 40px;
     font-size: 24px;
-    border-bottom: 1px solid #34495e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Semi-transparent white */
     padding-bottom: 15px;
 }
 
@@ -65,11 +72,25 @@ body {
     padding-left: 20px; /* Slight movement effect */
 }
 
+.sidebar-footer {
+    margin-top: auto; /* Pushes the logo to the bottom of the sidebar */
+    padding-top: 20px;
+    text-align: center;
+}
+
+.utd-logo {
+    width: 100%;      /* Adjust size as needed */
+    max-width: 180px;
+    height: auto;
+    opacity: 0.9;     /* Optional: makes it blend slightly with the orange */
+}
+
 /* --- Main Content Area --- */
 .main-content {
     flex: 1; /* Takes up all remaining space */
     padding: 40px;
     overflow-y: auto; /* Allows scrolling ONLY inside the content area */
+    background-color: #E87500;
 }
 
 header {
