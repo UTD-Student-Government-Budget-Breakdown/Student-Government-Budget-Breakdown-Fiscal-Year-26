@@ -801,6 +801,116 @@ am5.ready(function() {
         });
     }
 
+    function buildPackedCircles(divID) {
+
+        var backBtn = document.getElementById("packBackBtn");
+
+        fetch("data.json")
+        .then(r => r.json())
+        .then(fullData => {
+
+            var hierarchy = fullData["School_Expenses_Hierarchy"];
+            hierarchy.forEach(school => {
+                school.color = SCHOOL_COLORS[school.name] || getSequenceColor(0);
+                if (school.children) {
+                    school.children.forEach((child, i) => { child.color = getSequenceColor(i); });
+                }
+            });
+
+            var currentRoot = null;
+
+            function styleSeries(series) {
+                series.links.template.setAll({ strokeOpacity: 0 });
+
+                series.circles.template.adapters.add("fill", (fill, target) =>
+                    target.dataItem?.dataContext?.color ? am5.color(target.dataItem.dataContext.color) : fill);
+                series.circles.template.adapters.add("stroke", (stroke, target) =>
+                    target.dataItem?.dataContext?.color ? am5.color(target.dataItem.dataContext.color) : stroke);
+
+                series.circles.template.setAll({
+                    fillOpacity: 0.85,
+                    strokeWidth: 2,
+                    strokeOpacity: 0.3,
+                    cursorOverStyle: "pointer",
+                    tooltipText: "{category}: [bold]${sum.formatNumber('#,###')}[/]"
+                });
+
+                series.labels.template.setAll({
+                    text: "{category}\n[bold fontSize:14px]${sum.formatNumber('#.#a')}[/]",
+                    fontSize: 11,
+                    fontWeight: "600",
+                    textAlign: "center",
+                    oversizedBehavior: "fit",
+                    minScale: 0.3
+                });
+            }
+
+            var chartDiv = document.getElementById(divID);
+
+            function makeChart(data, onNodeClick) {
+                if (currentRoot) currentRoot.dispose();
+                currentRoot = am5.Root.new(divID);
+                currentRoot.setThemes([am5themes_Animated.new(currentRoot)]);
+
+                var series = currentRoot.container.children.push(am5hierarchy.ForceDirected.new(currentRoot, {
+                    downDepth: 0,
+                    initialDepth: 1,
+                    topDepth: 1,
+                    centerStrength: 0.8,
+                    valueField: "value",
+                    categoryField: "name",
+                    childDataField: "children",
+                    minRadius: 25,
+                    maxRadius: am5.percent(25)
+                }));
+
+                styleSeries(series);
+
+                if (onNodeClick) {
+                    series.nodes.template.events.on("click", function(ev) {
+                        var name = ev.target.dataItem?.get("category");
+                        if (name) onNodeClick(name);
+                    });
+                }
+
+                series.data.setAll([{ name: "Root", children: data }]);
+                series.set("selectedDataItem", series.dataItems[0]);
+            }
+
+            function transitionTo(buildFn) {
+                chartDiv.style.transition = "opacity 0.2s";
+                chartDiv.style.opacity = "0";
+                setTimeout(function() {
+                    buildFn();
+                    chartDiv.style.opacity = "1";
+                }, 200);
+            }
+
+            function showSchools() {
+                backBtn.style.display = "none";
+                var schoolsOnly = hierarchy.map(function(s) {
+                    return { name: s.name, value: s.value, color: s.color };
+                });
+                makeChart(schoolsOnly, function(name) {
+                    var school = hierarchy.find(s => s.name === name);
+                    if (school && school.children) {
+                        transitionTo(function() { showExpenses(school); });
+                    }
+                });
+            }
+
+            function showExpenses(school) {
+                backBtn.style.display = "inline-block";
+                makeChart(school.children);
+            }
+
+            backBtn.addEventListener("click", function() {
+                transitionTo(showSchools);
+            });
+            showSchools();
+        });
+    }
+
     function buildAuxiliaryChart(divID, datasetKey, unitName) {
 
         var root = am5.Root.new(divID);
@@ -937,16 +1047,11 @@ am5.ready(function() {
         buildBOTGraphs("chart_budget_over_time_expense", "Expense_Over_Time", true);
 
     // Page: Budget By School
-    ["chart_JSOM_Expenses", "chart_NSM_Expenses", "chart_AHT_Expenses",
-     "chart_BBS_Expenses", "chart_EPPS_Expenses", "chart_IS_Expenses"].forEach(id => {
-        if (document.getElementById(id)) buildExpensesGraphs(id);
-    });
+    if (document.getElementById("packedCirclesChart"))
+        buildPackedCircles("packedCirclesChart");
 
     if (document.getElementById("chart_AHT_Revenue"))
         buildRevenueGraphs("chart_AHT_Revenue");
-
-    if (document.getElementById("chart_Expenses_School"))
-        buildExpensesBySchoolGraph("chart_Expenses_School");
 
     // Page: Student Fees
     if (document.getElementById("chart_StudentFeesTotals"))

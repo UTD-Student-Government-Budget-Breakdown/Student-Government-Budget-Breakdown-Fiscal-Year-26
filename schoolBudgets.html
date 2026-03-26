@@ -11,6 +11,7 @@
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
 </head>
 <body>
 
@@ -36,64 +37,15 @@
             <section class="charts-grid">
 
                 <div class="chart-card">
-                    <h3>JSOM Expenses</h3>
-                    <div id="chart_JSOM_Expenses"></div>
-                    <p style="margin-top: 15px; color: #51616f; font-size: 14px; line-height: 1.5;">
-                        <strong>JSOM:</strong> JSOM is UT Dallas’ primary business school, generating $13.0M in designated tuition. The school spends $78.5M, with most funding concentrated in management programs and teaching salaries.
-                    </p>
-                </div>
-
-                <div class="chart-card">
-                    <h3>NSM Expenses</h3>
-                    <div id="chart_NSM_Expenses"></div>
-                    <p style="margin-top: 15px; color: #51616f; font-size: 14px; line-height: 1.5;">
-                        <strong>NSM:</strong> NSM supports core science instruction and lab-based research with $38.3M in designated expenses. Funding is split between teaching salaries and research costs, with lab and equipment needs limiting budget flexibility.
-                    </p>
-                </div>
-
-                <div class="chart-card">
-                    <h3>AHT Expenses</h3>
-                    <div id="chart_AHT_Expenses"></div>
-                    <p style="margin-top: 15px; color: #51616f; font-size: 14px; line-height: 1.5;">
-                        <strong>AHT Expenses:</strong> According to figure 20, 98.7% of expenses are dedicated to salaries and other wages. There is approximately a $3.8M gap in net funding when comparing designated tuition to expenses.
-                    </p>
-                </div>
-
-                <div class="chart-card">
-                    <h3>BBS Expenses</h3>
-                    <div id="chart_BBS_Expenses"></div>
-                    <p style="margin-top: 15px; color: #51616f; font-size: 14px; line-height: 1.5;">
-                        <strong>BBS – Expenses:</strong> According to Figure 23, 47% of expenses are dedicated to salaries and other wages. BBS shows a structural reliance on external funding from grants and University allocations.
-                    </p>
-                </div>
-
-                <div class="chart-card">
-                    <h3>EPPS Expenses</h3>
-                    <div id="chart_EPPS_Expenses"></div>
-                    <p style="margin-top: 15px; color: #51616f; font-size: 14px; line-height: 1.5;">
-                        <strong>EPPS – Expenses:</strong> According to Figure 25, 57.3% of expenses are dedicated to salaries and other wages. EPPS shows a structural reliance on institutional allocations and external funding.
-                    </p>
-                </div>
-
-                <div class="chart-card">
-                    <h3>IS Expenses</h3>
-                    <div id="chart_IS_Expenses"></div>
-                    <p style="margin-top: 15px; color: #51616f; font-size: 14px; line-height: 1.5;">
-                        <strong>IS – Expenses:</strong> IS supports interdisciplinary academic programs and operates on a $2.6M designated budget, the smallest among the schools analyzed. Most spending goes to salaries, making the school lean but sensitive to budget changes.
-                    </p>
+                    <h3>Expenses by School</h3>
+                    <p style="margin-bottom: 10px; color: #51616f; font-size: 14px;">Click a school to explore its individual expenses.</p>
+                    <button id="packBackBtn" style="display:none; margin-bottom:10px; padding:6px 14px; border:1px solid #ccc; border-radius:5px; background:#f4f6f8; cursor:pointer; font-size:13px;">← Back to All Schools</button>
+                    <div id="packedCirclesChart" style="height: 650px;"></div>
                 </div>
 
                 <div class="chart-card">
                     <h3>AHT Revenue</h3>
                     <div id="chart_AHT_Revenue"></div>
-                    <p style="margin-top: 15px; color: #51616f; font-size: 14px; line-height: 1.5;">
-                        <strong>AHT - Revenue:</strong> The total revenue from the School of AHT is $9.2M with Arts Humanities & Technology. The revenue generated is highly concentrated to AHT which creates a unique structure for AHT with less reliance on institution allocations.
-                    </p>
-                </div>
-
-                <div class="chart-card">
-                    <h3>Total Expenses by School</h3>
-                    <div id="chart_Expenses_School"></div>
                 </div>
 
             </section>
