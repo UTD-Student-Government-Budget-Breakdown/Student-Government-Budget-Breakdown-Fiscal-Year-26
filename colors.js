@@ -1,16 +1,18 @@
+const _css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
 const PALETTE = {
-    teal:       "#00b18b",
-    cyan:       "#0bbbbb",
-    aqua:       "#1ae3e1",
-    skyBlue:    "#2ad8fc",
-    blue:       "#3cacfd",
-    lavender:   "#9ebcda",
-    tan:        "#dabc9e",
-    orange:     "#fd8d3c",
-    redOrange:  "#fc4e2a",
-    red:        "#e31a1c",
-    darkRed:    "#bb0b0b",
-    crimson:    "#b10026"
+    teal:       _css("--palette-teal"),
+    cyan:       _css("--palette-cyan"),
+    aqua:       _css("--palette-aqua"),
+    skyBlue:    _css("--palette-sky-blue"),
+    blue:       _css("--palette-blue"),
+    lavender:   _css("--palette-lavender"),
+    tan:        _css("--palette-tan"),
+    orange:     _css("--palette-orange"),
+    redOrange:  _css("--palette-red-orange"),
+    red:        _css("--palette-red"),
+    darkRed:    _css("--palette-dark-red"),
+    crimson:    _css("--palette-crimson")
 };
 
 const COLOR_SEQUENCE = [

@@ -1,4 +1,40 @@
 /* =========================================
+   0. COLOR PALETTE (CSS VARIABLES)
+   ========================================= */
+:root {
+    /* Chart palette (shared with colors.js) */
+    --palette-teal:       #00b18b;
+    --palette-cyan:       #0bbbbb;
+    --palette-aqua:       #1ae3e1;
+    --palette-sky-blue:   #2ad8fc;
+    --palette-blue:       #3cacfd;
+    --palette-lavender:   #9ebcda;
+    --palette-tan:        #dabc9e;
+    --palette-orange:     #fd8d3c;
+    --palette-red-orange: #fc4e2a;
+    --palette-red:        #e31a1c;
+    --palette-dark-red:   #bb0b0b;
+    --palette-crimson:    #b10026;
+
+    /* Branding */
+    --utd-green:       #154734;
+    --utd-orange:      #E87500;
+    --utd-orange-dark: #C66300;
+
+    /* UI tokens */
+    --bg-page:         #f4f6f8;
+    --bg-card:         #ffffff;
+    --text-primary:    #2c3e50;
+    --text-secondary:  #7f8c8d;
+    --text-muted:      #51616f;
+    --text-sidebar:    #bdc3c7;
+    --border-light:    #e1e4e8;
+    --accent-blue:     var(--palette-blue);
+    --accent-teal:     var(--palette-teal);
+    --accent-red:      var(--palette-red);
+}
+
+/* =========================================
    1. GLOBAL RESET & BASIC SETUP
    ========================================= */
 * {
@@ -9,42 +45,34 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8; /* Light grey-blue background */
-    height: 100vh; /* Full viewport height */
-    overflow: hidden; /* Prevents double scrollbars */
+    background-color: var(--bg-page);
+    height: 100vh;
+    overflow: hidden;
 }
 
 /* =========================================
    2. MAIN LAYOUT (SIDEBAR + CONTENT)
    ========================================= */
 .container {
-    display: flex; /* Puts Sidebar and Main next to each other */
+    display: flex;
     height: 100%;
 }
 
-/* --- Sidebar Styling --- */
 .sidebar {
     width: 250px;
-    background-color: #154734; 
+    background-color: var(--utd-green);
     color: white;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    flex-shrink: 0; /* Prevents sidebar from shrinking on small screens */
-}
-
-/* Adjust the hover/active state so it's visible against orange */
-.sidebar a:hover, .sidebar a.active {
-    background-color: #C66300; /* A slightly darker orange for contrast */
-    color: #ffffff;
-    padding-left: 20px;
+    flex-shrink: 0;
 }
 
 .sidebar h2 {
     text-align: center;
     margin-bottom: 40px;
     font-size: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 15px;
 }
 
@@ -58,7 +86,7 @@ body {
 
 .sidebar a {
     text-decoration: none;
-    color: #bdc3c7;
+    color: var(--text-sidebar);
     font-size: 18px;
     display: block;
     padding: 12px 15px;
@@ -67,30 +95,29 @@ body {
 }
 
 .sidebar a:hover, .sidebar a.active {
-    background-color: #34495e;
-    color: #ffffff;
-    padding-left: 20px; /* Slight movement effect */
+    background-color: var(--utd-orange-dark);
+    color: var(--bg-card);
+    padding-left: 20px;
 }
 
 .sidebar-footer {
-    margin-top: auto; /* Pushes the logo to the bottom of the sidebar */
+    margin-top: auto;
     padding-top: 20px;
     text-align: center;
 }
 
 .utd-logo {
-    width: 100%;      /* Adjust size as needed */
+    width: 100%;
     max-width: 180px;
     height: auto;
-    opacity: 0.9;     /* Optional: makes it blend slightly with the orange */
+    opacity: 0.9;
 }
 
-/* --- Main Content Area --- */
 .main-content {
-    flex: 1; /* Takes up all remaining space */
+    flex: 1;
     padding: 40px;
-    overflow-y: auto; /* Allows scrolling ONLY inside the content area */
-    background-color: #E87500;
+    overflow-y: auto;
+    background-color: var(--utd-orange);
 }
 
 header {
@@ -99,12 +126,12 @@ header {
 
 header h1 {
     font-size: 32px;
-    color: #2c3e50;
+    color: var(--text-primary);
     margin-bottom: 5px;
 }
 
 header p {
-    color: #7f8c8d;
+    color: var(--text-secondary);
     font-size: 16px;
 }
 
@@ -114,33 +141,31 @@ header p {
 .charts-grid {
     display: flex;
     flex-direction: column;
-    gap: 40px; /* Space between each chart card */
-    padding-bottom: 50px; /* Extra space at bottom for scrolling */
+    gap: 40px;
+    padding-bottom: 50px;
 }
 
 .chart-card {
-    background-color: white;
+    background-color: var(--bg-card);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Subtle shadow */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     padding: 25px;
-    border: 1px solid #e1e4e8;
+    border: 1px solid var(--border-light);
 }
 
 .chart-card h3 {
     margin-bottom: 20px;
-    color: #2c3e50;
+    color: var(--text-primary);
     font-size: 18px;
     font-weight: 600;
-    border-left: 5px solid #3cacfd; /* Blue accent line on title */
+    border-left: 5px solid var(--accent-blue);
     padding-left: 10px;
 }
-
-/* Budget Cuts page helpers (classes already used in budgetCuts.html) */
 .year-header {
     margin: 14px 0 10px;
     font-size: 14px;
     font-weight: 700;
-    color: #2c3e50;
+    color: var(--text-primary);
 }
 
 .mt-4 {
@@ -150,11 +175,6 @@ header p {
 /* =========================================
    4. SPECIFIC CHART DIMENSIONS
    ========================================= */
-/* IMPORTANT: 
-   AMCharts will fail to load if the div has 0 height.
-   We must set a fixed height for every chart ID.
-*/
-
 #chart_Operating_Revenue25, #chart_Operating_Revenue26, #chart_Operating_RevenueChange26,
 #chart_Non-operating_Revenue25, #chart_Non-operating_Revenue26, #chart_Non-operating_RevenueChange26,
 #chart_Expense25, #chart_Expense26, #chart_ExpenseChange26,
@@ -163,13 +183,13 @@ header p {
 #chart_StudentFeesTotals, #chart_StudentFeesOverview, #chart_MandatoryFeeBreakdown, #chart_ProgramFeesBreakdown,
 #chart_JSOM_Expenses, #chart_NSM_Expenses, #chart_AHT_Expenses, #chart_BBS_Expenses, #chart_EPPS_Expenses, #chart_IS_Expenses, #chart_AHT_Revenue, #chart_Expenses_School {
     width: 100%;
-    height: 500px; /* Tall enough for both Pie and Bar */
+    height: 500px;
 }
 
 #chart_budget_over_time_operating_revenue,
 #chart_budget_over_time_non_operating_revenue, #chart_budget_over_time_expense{
     width: 100%;
-    height: 1300px; /* more height for two vertical graphs */
+    height: 1300px;
 }
 #chart_StudentFeesTotals { height: 520px; }
 #chart_StudentFeesOverview { height: 520px; }
@@ -181,7 +201,7 @@ header p {
 }
 
 .fees-table {
-    border: 1px solid #e1e4e8;
+    border: 1px solid var(--border-light);
     border-radius: 10px;
     overflow: hidden;
     min-width: 520px;
@@ -194,7 +214,7 @@ header p {
     padding: 10px 14px;
     border-top: 1px solid #eef1f4;
     font-size: 14px;
-    color: #2c3e50;
+    color: var(--text-primary);
 }
 
 .fees-head {
@@ -215,7 +235,7 @@ header p {
 
 .fees-sub {
     padding-left: 34px;
-    color: #51616f;
+    color: var(--text-muted);
 }
 
 .fees-total {
@@ -234,18 +254,18 @@ header p {
 }
 
 .credits-section {
-    background-color: white;
+    background-color: var(--bg-card);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     padding: 30px;
-    border: 1px solid #e1e4e8;
+    border: 1px solid var(--border-light);
 }
 
 .credits-section h2 {
-    color: #2c3e50;
+    color: var(--text-primary);
     font-size: 24px;
     margin-bottom: 25px;
-    border-left: 5px solid #3cacfd;
+    border-left: 5px solid var(--accent-blue);
     padding-left: 15px;
 }
 
@@ -259,27 +279,27 @@ header p {
     text-align: center;
     padding: 10px;
     padding-left: 20px;
-    border-left: 8px solid #3cacfd;
+    border-left: 8px solid var(--accent-blue);
     margin-bottom: 15px;
 }
 
 .person-img {
-    width: 120px;       /* Set a standard width */
-    height: 120px;      /* Set a standard height */
-    object-fit: cover;  /* Prevents stretching */
-    border-radius: 50%; /* Makes the image circular */
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
     margin-bottom: 15px;
-    border: 3px solid #e87500; /* UTD Orange accent? */
+    border: 3px solid var(--utd-orange);
 }
 
 .person-card h3 {
-    color: #2c3e50;
+    color: var(--text-primary);
     font-size: 18px;
     margin-bottom: 5px;
 }
 
 .person-card .role {
-    color: #2c3e50;
+    color: var(--text-primary);
     font-weight: 600;
     font-size: 14px;
     margin-bottom: 5px;
@@ -295,29 +315,29 @@ header p {
     margin-bottom: 10px;
     background-color: #f8f9fa;
     border-radius: 6px;
-    border-left: 4px solid #00b18b;
-    color: #2c3e50;
+    border-left: 4px solid var(--accent-teal);
+    color: var(--text-primary);
     font-size: 15px;
 }
 
 .tech-list strong {
-    color: #2c3e50;
+    color: var(--text-primary);
     font-weight: 600;
 }
 
 .tech-list a {
-    color: #2c3e50;
+    color: var(--text-primary);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .tech-list a:hover {
-    color: #3cacfd;
+    color: var(--accent-blue);
     text-decoration: underline;
 }
 
 .error {
-    color: #e31a1c;
+    color: var(--accent-red);
     font-style: italic;
     padding: 20px;
     text-align: center;
