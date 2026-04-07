@@ -9,7 +9,7 @@ am5.ready(function() {
     const applyColor = (graphics, target) =>
         target.dataItem?.dataContext?.color ? am5.color(target.dataItem.dataContext.color) : graphics;
 
-    function buildFY26Graphs(divID, datasetKey, isExpense, directData) {
+    function buildFY26Graphs(divID, datasetKey, isExpense) {
 
         var root = am5.Root.new(divID);
         root.setThemes([ am5themes_Animated.new(root) ]);
@@ -109,17 +109,13 @@ am5.ready(function() {
             barSeries.appear(1000, 100);
         };
 
-        if (directData) {
-            processChartData(directData);
-        } else {
-            fetch("data.json")
-            .then(response => response.json())
-            .then(fullData => {
-                let currentData = fullData[datasetKey];
-                if(!currentData) { console.error("Missing data:", datasetKey); return; }
-                processChartData(currentData);
-            });
-        }
+        fetch("data.json")
+        .then(response => response.json())
+        .then(fullData => {
+            let currentData = fullData[datasetKey];
+            if(!currentData) { console.error("Missing data:", datasetKey); return; }
+            processChartData(currentData);
+        });
     }
 
     function buildComparison(divId25, divId26, datasetKey25, datasetKey26, isExpense) {
@@ -429,134 +425,8 @@ am5.ready(function() {
         });
     }
 
-    var schoolDatasetMap = {
-        "chart_JSOM_Expenses": "JSOM",
-        "chart_NSM_Expenses":  "NSM",
-        "chart_AHT_Expenses":  "AHT",
-        "chart_BBS_Expenses":  "BBS",
-        "chart_EPPS_Expenses": "EPPS",
-        "chart_IS_Expenses":   "IS",
-        "chart_ECS_Expenses":  "ECS"
-    };
-
-    function buildExpensesGraphs(divID) {
-        var schoolName = schoolDatasetMap[divID];
-        if (!schoolName) return;
-
-        fetch("data.json")
-        .then(res => res.json())
-        .then(fullData => {
-            var hierarchy = fullData["School_Expenses_Hierarchy"];
-            var school = hierarchy.find(s => s.name === schoolName);
-            if (!school || !school.children) return;
-
-            var expenseData = school.children.map(child => ({
-                expenseType: child.name,
-                expenseAmount: child.value
-            }));
-
-            buildFY26Graphs(divID, null, true, expenseData);
-        });
-    }
-
     function buildRevenueGraphs(divID) {
         if (divID === "chart_AHT_Revenue") buildFY26Graphs(divID, "AHT_Revenue", false);
-    }
-
-    function buildExpensesBySchoolGraph(divID) {
-
-        var root = am5.Root.new(divID);
-        root.setThemes([am5themes_Animated.new(root)]);
-
-        var container = root.container.children.push(am5.Container.new(root, {
-            layout: root.horizontalLayout,
-            width: am5.percent(100),
-            height: am5.percent(100)
-        }));
-
-        fetch("data.json")
-        .then(res => res.json())
-        .then(fullData => {
-
-            let hierarchy = fullData["School_Expenses_Hierarchy"];
-            let data = hierarchy.map(s => ({
-                school: s.name,
-                expenseAmount: s.value
-            }));
-            data.forEach(item => { item.color = SCHOOL_COLORS[item.school] || getSequenceColor(0); });
-            data.sort((a, b) => a.expenseAmount - b.expenseAmount);
-
-            var barChart = container.children.push(am5xy.XYChart.new(root, {
-                width: am5.percent(60), layout: root.verticalLayout, paddingRight: 30
-            }));
-
-            var yAxis = barChart.yAxes.push(am5xy.CategoryAxis.new(root, {
-                categoryField: "school",
-                renderer: am5xy.AxisRendererY.new(root, { inversed: true, cellStartLocation: 0.1, cellEndLocation: 0.9 })
-            }));
-
-            yAxis.get("renderer").labels.template.setAll({
-                fontSize: 12, fontWeight: "500", maxWidth: 150,
-                oversizedBehavior: "wrap", textAlign: "right"
-            });
-
-            var xAxis = barChart.xAxes.push(am5xy.ValueAxis.new(root, {
-                renderer: am5xy.AxisRendererX.new(root, { strokeOpacity: 0 }),
-                min: 0, extraMax: 0.1, numberFormat: "$#.#a"
-            }));
-
-            var barSeries = barChart.series.push(am5xy.ColumnSeries.new(root, {
-                xAxis, yAxis,
-                valueXField: "expenseAmount", categoryYField: "school",
-                sequencedInterpolation: true
-            }));
-
-            barSeries.columns.template.setAll({ height: am5.percent(70), cornerRadiusBR: 5, cornerRadiusTR: 5 });
-            barSeries.columns.template.adapters.add("fill", applyColor);
-            barSeries.columns.template.adapters.add("stroke", applyColor);
-
-            barSeries.set("maskBullets", false);
-            barSeries.bullets.push(() =>
-                am5.Bullet.new(root, {
-                    locationX: 1,
-                    sprite: am5.Label.new(root, {
-                        text: "{valueX.formatNumber('$#.#a')}",
-                        centerY: am5.p50, paddingLeft: 5,
-                        fontWeight: "bold", populateText: true
-                    })
-                })
-            );
-
-            var pieChart = container.children.push(am5percent.PieChart.new(root, {
-                layout: root.verticalLayout, innerRadius: am5.percent(60), width: am5.percent(40)
-            }));
-
-            var pieSeries = pieChart.series.push(am5percent.PieSeries.new(root, {
-                categoryField: "school", valueField: "expenseAmount", alignLabels: false
-            }));
-
-            pieSeries.slices.template.adapters.add("fill", applyColor);
-            pieSeries.slices.template.adapters.add("stroke", applyColor);
-
-            pieSeries.labels.template.setAll({
-                text: "{valuePercentTotal.formatNumber('#.0')}%",
-                fontWeight: "bold", inside: false
-            });
-            pieSeries.ticks.template.set("forceHidden", true);
-
-            let total = getTotal(data, "expenseAmount");
-            pieChart.seriesContainer.children.push(am5.Label.new(root, {
-                textAlign: "center", centerX: am5.percent(50), centerY: am5.percent(50),
-                text: `[fontSize:10px]TOTAL EXPENSE[/]\n[bold fontSize:18px]${root.numberFormatter.format(total, "$#.0a")}[/]`
-            }));
-
-            yAxis.data.setAll(data);
-            barSeries.data.setAll(data);
-            pieSeries.data.setAll(data);
-
-            barSeries.appear(1000, 100);
-            pieSeries.appear(1000, 100);
-        });
     }
 
     function buildStudentFeesTotals(divID, datasetKey) {
