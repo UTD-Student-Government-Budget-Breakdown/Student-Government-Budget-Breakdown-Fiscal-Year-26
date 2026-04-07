@@ -130,7 +130,6 @@ am5.ready(function() {
             let data26 = fullData[datasetKey26];
             if (!data25 || !data26) { console.error(`Missing data: ${datasetKey25} or ${datasetKey26}`); return; }
 
-            // Build unified color map so same category gets same color across both years
             var categorySet = new Set();
             data25.forEach(function(item) { categorySet.add(item[categoryKey]); });
             data26.forEach(function(item) { categorySet.add(item[categoryKey]); });
@@ -328,7 +327,6 @@ am5.ready(function() {
             var rawData = fullData[datasetKey];
             if (!rawData) { console.error("Missing data:", datasetKey); return; }
 
-            // Sort within each year group (largest first), then flatten
             var grouped = {};
             rawData.forEach(d => {
                 if (!grouped[d.year]) grouped[d.year] = [];
@@ -880,7 +878,6 @@ am5.ready(function() {
         });
     }
 
-    // Page: Fall 25 - Spring 26 Budget
     if (document.getElementById("chart_Operating_Revenue26"))
         buildFY26Graphs("chart_Operating_Revenue26", "FY26_Operating_Revenue", false);
 
@@ -890,7 +887,6 @@ am5.ready(function() {
     if (document.getElementById("chart_Expense26"))
         buildFY26Graphs("chart_Expense26", "FY26_Expense", true);
 
-    // Page: Budget Cuts
     if (document.getElementById("chart_Operating_Revenue25") && document.getElementById("chart_Operating_RevenueChange26"))
         buildComparison("chart_Operating_Revenue25", "chart_Operating_RevenueChange26", "FY25_Operating_Revenue", "FY26_Operating_Revenue", false);
 
@@ -900,7 +896,6 @@ am5.ready(function() {
     if (document.getElementById("chart_Expense25") && document.getElementById("chart_ExpenseChange26"))
         buildComparison("chart_Expense25", "chart_ExpenseChange26", "FY25_Expense", "FY26_Expense", true);
 
-    // Page: Budget Over Time
     if (document.getElementById("chart_budget_over_time_operating_revenue"))
         buildBOTGraphs("chart_budget_over_time_operating_revenue", "OperatingRevenue_Over_Time", true);
 
@@ -910,7 +905,6 @@ am5.ready(function() {
     if (document.getElementById("chart_budget_over_time_expense"))
         buildBOTGraphs("chart_budget_over_time_expense", "Expense_Over_Time", true);
 
-    // Page: Budget By School
     ["chart_JSOM_Expenses", "chart_NSM_Expenses", "chart_AHT_Expenses",
      "chart_BBS_Expenses", "chart_EPPS_Expenses", "chart_IS_Expenses"].forEach(id => {
         if (document.getElementById(id)) buildExpensesGraphs(id);
@@ -922,7 +916,6 @@ am5.ready(function() {
     if (document.getElementById("chart_Expenses_School"))
         buildExpensesBySchoolGraph("chart_Expenses_School");
 
-    // Page: Student Fees
     if (document.getElementById("chart_StudentFeesTotals"))
         buildStudentFeesTotals("chart_StudentFeesTotals", "FY26_TuitionAndStudentFees_Totals");
 
@@ -938,7 +931,6 @@ am5.ready(function() {
     if (document.getElementById("studentFeesTable"))
         buildStudentFeesTable("studentFeesTable", "FY26_TuitionAndStudentFees_Totals", "FY26_MandatoryFees", "FY26_ProgramCourseOtherFees");
 
-    // Page: Auxiliary Budget
     if (document.getElementById("housingChart"))
         buildAuxiliaryChart("housingChart", "FY26_Auxiliary_Budget", "Housing");
 

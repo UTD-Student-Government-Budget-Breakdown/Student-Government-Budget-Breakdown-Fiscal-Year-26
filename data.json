@@ -1,24 +1,4 @@
 {
-  "_disclaimer": "Each expense amount = expense - revenue --> so expenseAmount = netExpenseAmount",
-
-  "ecs_Expense": [
-    { "expenseType": "Analog Center", "expenseAmount": 546317 },
-    { "expenseType": "Bioengineering", "expenseAmount": 1931569 },
-    { "expenseType": "Computer Science", "expenseAmount": 4029026 },
-    { "expenseType": "ECS Student Services", "expenseAmount": 2463311 },
-    { "expenseType": "Electrical & Computer Engineering", "expenseAmount": 1978080 },
-    { "expenseType": "Engineering & Computer Science", "expenseAmount": 9947592 },
-    { "expenseType": "Material Science Engineering", "expenseAmount": 695755 },
-    { "expenseType": "Mechanical Engineering", "expenseAmount": 2473002 },
-    { "expenseType": "System Engineering", "expenseAmount": 1223970 },
-    { "expenseType": "Salaries & Wages (Education)", "expenseAmount": 35910262 },
-    { "expenseType": "Salaries & Wages (Research)", "expenseAmount": 1318993 },
-    { "expenseType": "Other Research Expenses", "expenseAmount": 7992000.00 }
-  ],
-
-
-  "_section1": "Data for Fiscal Year 2026 Page",
-
   "FY26_Expense": [
   { "expenseType": "Instruction", "expenseAmount": 253679835, "percentChange": -5.6 },
   { "expenseType": "Research", "expenseAmount": 153774046, "percentChange": 0.7 },
@@ -51,8 +31,6 @@
   { "revenueType": "Gifts in Support of Operations", "revenueAmount": 13585000, "percentChange": -17.4 },
   { "revenueType": "Net Investment Income", "revenueAmount": 80849605, "percentChange": 15.2 }
 ],
-
-"_section_student_fees": "Data for Student Fees & Tuition Page",
 
 "FY26_TuitionAndStudentFees_Totals": [
   { "category": "Laboratory & Supplemental Fees", "amount": 1648500 },
@@ -103,15 +81,11 @@
   { "category": "EIPP Fee - Indust Practice Pgm", "amount": 10000 }
 ],
 
-"_section_auxiliary": "Data for Auxiliary Budget Page",
-
 "FY26_Auxiliary_Budget": [
   { "unit": "Housing", "revenue": 46424777, "budgetedExpenses": 16970207, "debtService": 16710535, "totalTransfers": 6182108 },
   { "unit": "University Recreation", "revenue": 100000, "budgetedExpenses": 2568655, "debtService": 0, "totalTransfers": 2468655 },
   { "unit": "Parking & Transportation", "revenue": 8480000, "budgetedExpenses": 3630759, "debtService": 2774751, "totalTransfers": 1110070 }
 ],
-
-"_section2": "Additional Data for Budget Cuts Page",
 
 "FY25_Operating_Revenue":[
   { "revenueType": "Net Tuition and Fees", "revenueAmount": 374782337 },
@@ -143,173 +117,6 @@
   { "expenseType": "Student Services", "expenseAmount": 29072557 },
   { "expenseType": "Public Service", "expenseAmount": 14231641 }
 ],
-
-"_section3": "Additional Data for Budget Over Time Page",
-
-"FY22_Expense_T": [
-  { "expenseType": "Instruction", "expenseAmount": 209499127.79 },
-  { "expenseType": "Research", "expenseAmount": 106144984.28 },
-  { "expenseType": "Academic Support", "expenseAmount": 67115801.54 },
-  { "expenseType": "Depreciation and Amortization", "expenseAmount": 93630295.2 },
-  { "expenseType": "Operation and Maintenance of Plant", "expenseAmount": 58604865.96 },
-  { "expenseType": "Institutional Support", "expenseAmount": 39316651.13 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 43375304.51 },
-  { "expenseType": "Scholarships and Fellowships", "expenseAmount": 66693403.98 },
-  { "expenseType": "Student Services", "expenseAmount": 19889441.88 },
-  { "expenseType": "Public Service", "expenseAmount": 10482937.08 }
-],
-
-"FY23_Expense_T": [
-  { "expenseType": "Instruction", "expenseAmount": 220306312.14 },
-  { "expenseType": "Research", "expenseAmount": 114572375.22 },
-  { "expenseType": "Academic Support", "expenseAmount": 85544804.75 },
-  { "expenseType": "Depreciation and Amortization", "expenseAmount": 98596648.35 },
-  { "expenseType": "Operation and Maintenance of Plant", "expenseAmount": 58497186.52 },
-  { "expenseType": "Institutional Support", "expenseAmount": 48320753.81 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 52902891.19 },
-  { "expenseType": "Scholarships and Fellowships", "expenseAmount": 41180717.37 },
-  { "expenseType": "Student Services", "expenseAmount": 23209819.15 },
-  { "expenseType": "Public Service", "expenseAmount": 13302583.91 }
-],
-
-"FY24_Expense_T": [
-  { "expenseType": "Instruction", "expenseAmount": 243024569.87 },
-  { "expenseType": "Research", "expenseAmount": 138572237.85 },
-  { "expenseType": "Academic Support", "expenseAmount": 96570711.94 },
-  { "expenseType": "Depreciation and Amortization", "expenseAmount": 99267561.84 },
-  { "expenseType": "Operation and Maintenance of Plant", "expenseAmount": 62487325.77 },
-  { "expenseType": "Institutional Support", "expenseAmount": 52175568.26 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 54685227.78 },
-  { "expenseType": "Scholarships and Fellowships", "expenseAmount": 40547315.57 },
-  { "expenseType": "Student Services", "expenseAmount": 27527552.3 },
-  { "expenseType": "Public Service", "expenseAmount": 15243003.26 }
-],
-
-"FY25_Expense_T": [
-  { "expenseType": "Instruction", "expenseAmount": 268753073 },
-  { "expenseType": "Research", "expenseAmount": 152720704 },
-  { "expenseType": "Academic Support", "expenseAmount": 111481261 },
-  { "expenseType": "Depreciation and Amortization", "expenseAmount": 102053018 },
-  { "expenseType": "Operation and Maintenance of Plant", "expenseAmount": 75584599 },
-  { "expenseType": "Institutional Support", "expenseAmount": 65817558 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 57070460 },
-  { "expenseType": "Scholarships and Fellowships", "expenseAmount": 47845331 },
-  { "expenseType": "Student Services", "expenseAmount": 29072557 },
-  { "expenseType": "Public Service", "expenseAmount": 14231641 }
-],
-
-"FY26_Expense_T": [
-  { "expenseType": "Instruction", "expenseAmount": 253679835 },
-  { "expenseType": "Research", "expenseAmount": 153774046 },
-  { "expenseType": "Academic Support", "expenseAmount": 102917687 },
-  { "expenseType": "Depreciation and Amortization", "expenseAmount": 113744271 },
-  { "expenseType": "Operation and Maintenance of Plant", "expenseAmount": 73180194 },
-  { "expenseType": "Institutional Support", "expenseAmount": 54200026 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 54055426 },
-  { "expenseType": "Scholarships and Fellowships", "expenseAmount": 52158181 },
-  { "expenseType": "Student Services", "expenseAmount": 30306846 },
-  { "expenseType": "Public Service", "expenseAmount": 13680719 }
-],
-
-"FY22_NonOperating": [
-  { "expenseType": "State Appropriations", "expenseAmount": 137355030.21 },
-  { "expenseType": "Federal Sponsored Programs (Nonoperating)", "expenseAmount": 75293737.6 },
-  { "expenseType": "State & Local Sponsored Programs (Nonoperating)", "expenseAmount": 1151461.17 },
-  { "expenseType": "Gifts in Support of Operations", "expenseAmount": 22128589.65 },
-  { "expenseType": "Investment Income", "expenseAmount": 45559888.24 },
-  { "expenseType": "Net Change in Fair Value of Investments", "expenseAmount": -93468950.52 },
-  { "expenseType": "Interest Expense on Capital Asset Financings", "expenseAmount": -533319.19 },
-  { "expenseType": "Gain/Loss on Sale of Capital Assets", "expenseAmount": -756912.25 },
-  { "expenseType": "Other Nonoperating Revenues", "expenseAmount": 220814.35 }
-],
-
-"FY23_NonOperating": [
-  { "expenseType": "State Appropriations", "expenseAmount": 138282303.56 },
-  { "expenseType": "Federal Sponsored Programs (Nonoperating)", "expenseAmount": 39396913.08 },
-  { "expenseType": "State & Local Sponsored Programs (Nonoperating)", "expenseAmount": 12097716.76 },
-  { "expenseType": "Gifts in Support of Operations", "expenseAmount": 16406714.81 },
-  { "expenseType": "Investment Income", "expenseAmount": 49701229.79 },
-  { "expenseType": "Net Change in Fair Value of Investments", "expenseAmount": -345756.3 },
-  { "expenseType": "Interest Expense on Capital Asset Financings", "expenseAmount": -556646.93 },
-  { "expenseType": "Gain/Loss on Sale of Capital Assets", "expenseAmount": -119454.97 },
-  { "expenseType": "Other Nonoperating Revenues", "expenseAmount": 4263112.09 }
-],
-
-"FY24_NonOperating": [
-  { "expenseType": "State Appropriations", "expenseAmount": 188862747.8 },
-  { "expenseType": "Federal Sponsored Programs (Nonoperating)", "expenseAmount": 39856669 },
-  { "expenseType": "State & Local Sponsored Programs (Nonoperating)", "expenseAmount": 3563113.64 },
-  { "expenseType": "Gifts in Support of Operations", "expenseAmount": 10699086.41 },
-  { "expenseType": "Investment Income", "expenseAmount": 68913881.7 },
-  { "expenseType": "Net Change in Fair Value of Investments", "expenseAmount": 86502171.29 },
-  { "expenseType": "Interest Expense on Capital Asset Financings", "expenseAmount": -610942.15 },
-  { "expenseType": "Gain/Loss on Sale of Capital Assets", "expenseAmount": -1636942.8 },
-  { "expenseType": "Other Nonoperating Revenues", "expenseAmount": 1048155.32 }
-],
-
-"FY25_NonOperating": [
-  { "expenseType": "State Appropriations", "expenseAmount": 176897505 },
-  { "expenseType": "Federal Sponsored Programs (Nonoperating)", "expenseAmount": 41450000 },
-  { "expenseType": "State & Local Sponsored Programs (Nonoperating)", "expenseAmount": 440500 },
-  { "expenseType": "Gifts in Support of Operations", "expenseAmount": 16453000 },
-  { "expenseType": "Investment Income", "expenseAmount": 70195107 }
-],
-
-"FY26_NonOperating": [
-  { "expenseType": "State Appropriations", "expenseAmount": 177157172 },
-  { "expenseType": "Federal Sponsored Programs (Nonoperating)", "expenseAmount": 41250000 },
-  { "expenseType": "State & Local Sponsored Programs (Nonoperating)", "expenseAmount": 4363794 },
-  { "expenseType": "Gifts in Support of Operations", "expenseAmount": 13585000 },
-  { "expenseType": "Investment Income", "expenseAmount": 80849605 }
-],
-
-"FY22_OperatingRevenue": [
-  { "expenseType": "Net Student Tuition and Fees", "expenseAmount": 370697931.63 },
-  { "expenseType": "Sponsored Programs", "expenseAmount": 92134241.14 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 50934943.83 },
-  { "expenseType": "Sales and Services of Educational Activities", "expenseAmount": 39173194.39 },
-  { "expenseType": "Other Operating Revenues", "expenseAmount": 9159326.75 },
-  { "expenseType": "Discounts and Allowances", "expenseAmount": -150445560 }
-],
-
-"FY23_OperatingRevenue": [
-  { "expenseType": "Net Student Tuition and Fees", "expenseAmount": 420356980.25 },
-  { "expenseType": "Sponsored Programs", "expenseAmount": 102148948.72 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 52120136.46 },
-  { "expenseType": "Sales and Services of Educational Activities", "expenseAmount": 40902432.27 },
-  { "expenseType": "Other Operating Revenues", "expenseAmount": 10945394.85 },
-  { "expenseType": "Discounts and Allowances", "expenseAmount": -147182184 }
-],
-
-"FY24_OperatingRevenue": [
-  { "expenseType": "Net Student Tuition and Fees", "expenseAmount": 392652099.72 },
-  { "expenseType": "Sponsored Programs", "expenseAmount": 119583180.49 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 59814113.75 },
-  { "expenseType": "Sales and Services of Educational Activities", "expenseAmount": 43683602.94 },
-  { "expenseType": "Other Operating Revenues", "expenseAmount": 11673112.74 },
-  { "expenseType": "Discounts and Allowances", "expenseAmount": -155790583 }
-],
-
-"FY25_OperatingRevenue": [
-  { "expenseType": "Net Student Tuition and Fees", "expenseAmount": 374782337 },
-  { "expenseType": "Sponsored Programs", "expenseAmount": 117659539 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 57535948 },
-  { "expenseType": "Sales and Services of Educational Activities", "expenseAmount": 41757115 },
-  { "expenseType": "Other Operating Revenues", "expenseAmount": 12230413 },
-  { "expenseType": "Discounts and Allowances", "expenseAmount": -159751384 }
-],
-
-"FY26_OperatingRevenue": [
-  { "expenseType": "Net Student Tuition and Fees", "expenseAmount": 339451172 },
-  { "expenseType": "Sponsored Programs", "expenseAmount": 125581113 },
-  { "expenseType": "Auxiliary Enterprises", "expenseAmount": 59146129 },
-  { "expenseType": "Sales and Services of Educational Activities", "expenseAmount": 44438798 },
-  { "expenseType": "Other Operating Revenues", "expenseAmount": 13922800 },
-  { "expenseType": "Discounts and Allowances", "expenseAmount": -167057991 }
-],
-
-"_section4": "Reformatted Data for BOT Graphs",
-
 "Expense_Over_Time": [
   { "year": "2022", "expenseType": "Instruction", "expenseAmount": 209499127.79 },
   { "year": "2023", "expenseType": "Instruction", "expenseAmount": 220306312.14 },
@@ -447,8 +254,6 @@
   { "year": "2025", "expenseType": "Other Operating Revenues", "expenseAmount": 12230413 },
   { "year": "2026", "expenseType": "Other Operating Revenues", "expenseAmount": 13922800 }
 ],
-
-"_section5": "Data for Budget by School Page",
 
 "JSOM_Expense":[
   { "expenseType": "Salaries & Wages (Education)", "expenseAmount": 21889331 },

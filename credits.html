@@ -36,9 +36,7 @@
             <section class="credits-content">
                 <div class="credits-section">
                     <h2>Leadership</h2>
-                    <div id="contributors-list" class="people-grid">
-                        <!-- Contributors will be loaded here from people.json -->
-                    </div>
+                    <div id="contributors-list" class="people-grid"></div>
                 </div>
 
                 <div class="credits-section">
@@ -55,17 +53,14 @@
     </div>
 
     <script>
-        // Load people data from people.json
         fetch('people.json')
             .then(response => response.json())
             .then(data => {
-                // Render contributors
                 const contributorsContainer = document.getElementById('contributors-list');
                 data.contributors.forEach(person => {
                     const card = document.createElement('div');
                     card.className = 'person-card';
 
-                    // Only create image HTML if image path exists
                     const imageHtml = person.image ? `<img src="${person.image}" alt="${person.name}" class="person-img">` : '';
                     
                     card.innerHTML = `
@@ -80,8 +75,6 @@
                 console.error('Error loading people.json:', error);
                 document.getElementById('contributors-list').innerHTML =
                     '<p class="error">Unable to load contributors data.</p>';
-                document.getElementById('acknowledgments-list').innerHTML =
-                    '<p class="error">Unable to load acknowledgments data.</p>';
             });
     </script>
 </body>

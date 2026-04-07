@@ -1,8 +1,4 @@
-/* =========================================
-   0. COLOR PALETTE (CSS VARIABLES)
-   ========================================= */
 :root {
-    /* Chart palette (shared with colors.js) */
     --palette-teal:       #00b18b;
     --palette-cyan:       #0bbbbb;
     --palette-aqua:       #1ae3e1;
@@ -16,12 +12,10 @@
     --palette-dark-red:   #bb0b0b;
     --palette-crimson:    #b10026;
 
-    /* Branding */
     --utd-green:       #154734;
     --utd-orange:      #E87500;
     --utd-orange-dark: #C66300;
 
-    /* UI tokens */
     --bg-page:         #f4f6f8;
     --bg-card:         #ffffff;
     --text-primary:    #2c3e50;
@@ -34,9 +28,6 @@
     --accent-red:      var(--palette-red);
 }
 
-/* =========================================
-   1. GLOBAL RESET & BASIC SETUP
-   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -50,9 +41,6 @@ body {
     overflow: hidden;
 }
 
-/* =========================================
-   2. MAIN LAYOUT (SIDEBAR + CONTENT)
-   ========================================= */
 .container {
     display: flex;
     height: 100%;
@@ -135,9 +123,6 @@ header p {
     font-size: 16px;
 }
 
-/* =========================================
-   3. CHART CARDS & GRID
-   ========================================= */
 .charts-grid {
     display: flex;
     flex-direction: column;
@@ -161,6 +146,7 @@ header p {
     border-left: 5px solid var(--accent-blue);
     padding-left: 10px;
 }
+
 .year-header {
     margin: 14px 0 10px;
     font-size: 14px;
@@ -172,9 +158,6 @@ header p {
     margin-top: 18px;
 }
 
-/* =========================================
-   4. SPECIFIC CHART DIMENSIONS
-   ========================================= */
 #chart_Operating_Revenue25, #chart_Operating_Revenue26, #chart_Operating_RevenueChange26,
 #chart_Non-operating_Revenue25, #chart_Non-operating_Revenue26, #chart_Non-operating_RevenueChange26,
 #chart_Expense25, #chart_Expense26, #chart_ExpenseChange26,
@@ -187,10 +170,11 @@ header p {
 }
 
 #chart_budget_over_time_operating_revenue,
-#chart_budget_over_time_non_operating_revenue, #chart_budget_over_time_expense{
+#chart_budget_over_time_non_operating_revenue, #chart_budget_over_time_expense {
     width: 100%;
     height: 1300px;
 }
+
 #chart_StudentFeesTotals { height: 520px; }
 #chart_StudentFeesOverview { height: 520px; }
 #chart_MandatoryFeeBreakdown { height: 720px; }
@@ -243,9 +227,6 @@ header p {
     font-weight: 800;
 }
 
-/* =========================================
-   5. CREDITS PAGE STYLING
-   ========================================= */
 .credits-content {
     display: flex;
     flex-direction: column;
@@ -342,4 +323,3 @@ header p {
     padding: 20px;
     text-align: center;
 }
-
