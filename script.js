@@ -801,9 +801,7 @@ am5.ready(function() {
         });
     }
 
-    function buildPackedCircles(divID) {
-
-        var backBtn = document.getElementById("packBackBtn");
+    function buildTreemap(divID) {
 
         fetch("data.json")
         .then(r => r.json())
@@ -812,102 +810,88 @@ am5.ready(function() {
             var hierarchy = fullData["School_Expenses_Hierarchy"];
             hierarchy.forEach(school => {
                 school.color = SCHOOL_COLORS[school.name] || getSequenceColor(0);
-                if (school.children) {
-                    school.children.forEach((child, i) => { child.color = getSequenceColor(i); });
+                if (school.children && school.children.length > 0) {
+                    delete school.value;
+                    school.children.forEach((child, i) => { child.colorIdx = i; });
                 }
             });
 
-            var currentRoot = null;
+            var root = am5.Root.new(divID);
+            var white = am5.color(0xffffff);
+            var myTheme = am5.Theme.new(root);
 
-            function styleSeries(series) {
-                series.links.template.setAll({ strokeOpacity: 0 });
-
-                series.circles.template.adapters.add("fill", (fill, target) =>
-                    target.dataItem?.dataContext?.color ? am5.color(target.dataItem.dataContext.color) : fill);
-                series.circles.template.adapters.add("stroke", (stroke, target) =>
-                    target.dataItem?.dataContext?.color ? am5.color(target.dataItem.dataContext.color) : stroke);
-
-                series.circles.template.setAll({
-                    fillOpacity: 0.85,
-                    strokeWidth: 2,
-                    strokeOpacity: 0.3,
-                    cursorOverStyle: "pointer",
-                    tooltipText: "{category}: [bold]${sum.formatNumber('#,###')}[/]"
-                });
-
-                series.labels.template.setAll({
-                    text: "{category}\n[bold fontSize:14px]${sum.formatNumber('#.#a')}[/]",
-                    fontSize: 11,
-                    fontWeight: "600",
-                    textAlign: "center",
-                    oversizedBehavior: "fit",
-                    minScale: 0.3
-                });
-            }
-
-            var chartDiv = document.getElementById(divID);
-
-            function makeChart(data, onNodeClick) {
-                if (currentRoot) currentRoot.dispose();
-                currentRoot = am5.Root.new(divID);
-                currentRoot.setThemes([am5themes_Animated.new(currentRoot)]);
-
-                var series = currentRoot.container.children.push(am5hierarchy.ForceDirected.new(currentRoot, {
-                    downDepth: 0,
-                    initialDepth: 1,
-                    topDepth: 1,
-                    centerStrength: 0.8,
-                    valueField: "value",
-                    categoryField: "name",
-                    childDataField: "children",
-                    minRadius: 25,
-                    maxRadius: am5.percent(25)
-                }));
-
-                styleSeries(series);
-
-                if (onNodeClick) {
-                    series.nodes.template.events.on("click", function(ev) {
-                        var name = ev.target.dataItem?.get("category");
-                        if (name) onNodeClick(name);
-                    });
-                }
-
-                series.data.setAll([{ name: "Root", children: data }]);
-                series.set("selectedDataItem", series.dataItems[0]);
-            }
-
-            function transitionTo(buildFn) {
-                chartDiv.style.transition = "opacity 0.2s";
-                chartDiv.style.opacity = "0";
-                setTimeout(function() {
-                    buildFn();
-                    chartDiv.style.opacity = "1";
-                }, 200);
-            }
-
-            function showSchools() {
-                backBtn.style.display = "none";
-                var schoolsOnly = hierarchy.map(function(s) {
-                    return { name: s.name, value: s.value, color: s.color };
-                });
-                makeChart(schoolsOnly, function(name) {
-                    var school = hierarchy.find(s => s.name === name);
-                    if (school && school.children) {
-                        transitionTo(function() { showExpenses(school); });
-                    }
-                });
-            }
-
-            function showExpenses(school) {
-                backBtn.style.display = "inline-block";
-                makeChart(school.children);
-            }
-
-            backBtn.addEventListener("click", function() {
-                transitionTo(showSchools);
+            myTheme.rule("RoundedRectangle", ["hierarchy", "node", "shape", "depth0"]).setAll({
+                strokeOpacity: 0, fillOpacity: 0
             });
-            showSchools();
+            myTheme.rule("Label", ["node", "depth0"]).setAll({ forceHidden: true });
+
+            myTheme.rule("RoundedRectangle", ["hierarchy", "node", "shape", "depth1"]).setAll({
+                strokeWidth: 3, stroke: white, fillOpacity: 1
+            });
+            myTheme.rule("Label", ["node", "depth1"]).setAll({
+                fontSize: 15, fontWeight: "700", fill: white,
+                oversizedBehavior: "fit", minScale: 0.5,
+                text: "[bold]{category}[/]\n${sum.formatNumber('#.#a')}"
+            });
+
+            myTheme.rule("RoundedRectangle", ["hierarchy", "node", "shape", "depth2"]).setAll({
+                fillOpacity: 1, strokeWidth: 1, strokeOpacity: 0.5, stroke: white
+            });
+            myTheme.rule("Label", ["node", "depth2"]).setAll({
+                fontSize: 14, fill: white,
+                oversizedBehavior: "fit", minScale: 0.2,
+                text: "{category}\n[bold]${sum.formatNumber('#.#a')}[/]"
+            });
+
+            root.setThemes([am5themes_Animated.new(root), myTheme]);
+
+            var container = root.container.children.push(am5.Container.new(root, {
+                width: am5.percent(100),
+                height: am5.percent(100),
+                layout: root.verticalLayout
+            }));
+
+            var series = container.children.push(am5hierarchy.Treemap.new(root, {
+                sort: "descending",
+                singleBranchOnly: true,
+                downDepth: 1,
+                upDepth: -1,
+                initialDepth: 1,
+                valueField: "value",
+                categoryField: "name",
+                childDataField: "children",
+                nodePaddingOuter: 0,
+                nodePaddingInner: 0
+            }));
+
+            series.rectangles.template.adapters.add("fill", function(fill, target) {
+                var colored = applyColor(fill, target);
+                if (colored !== fill) return colored;
+                var dc = target.dataItem?.dataContext;
+                if (dc && dc.colorIdx != null) return am5.color(getSequenceColor(dc.colorIdx));
+                return fill;
+            });
+
+            series.rectangles.template.setAll({
+                tooltipText: "[bold fontSize:16px]{category}[/]\n[fontSize:14px]${sum.formatNumber('#,###')}[/]",
+                interactive: true
+            });
+
+            series.rectangles.template.states.create("hover", {
+                fillOpacity: 0.85, strokeWidth: 3, stroke: white
+            });
+
+            container.children.moveValue(
+                am5hierarchy.BreadcrumbBar.new(root, { series: series }), 0
+            );
+
+            series.data.setAll([{
+                name: "UTD Schools",
+                children: hierarchy
+            }]);
+            series.set("selectedDataItem", series.dataItems[0]);
+
+            series.appear(1000, 100);
         });
     }
 
@@ -1047,8 +1031,8 @@ am5.ready(function() {
         buildBOTGraphs("chart_budget_over_time_expense", "Expense_Over_Time", true);
 
     // Page: Budget By School
-    if (document.getElementById("packedCirclesChart"))
-        buildPackedCircles("packedCirclesChart");
+    if (document.getElementById("treemapChart"))
+        buildTreemap("treemapChart");
 
     if (document.getElementById("chart_AHT_Revenue"))
         buildRevenueGraphs("chart_AHT_Revenue");
