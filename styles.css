@@ -116,13 +116,8 @@ body {
 .main-content {
     flex: 1;
     padding: 40px;
-<<<<<<< HEAD
-    overflow-y: auto;
-    background-color: var(--utd-orange);
-=======
     overflow-y: auto; /* Allows scrolling ONLY inside the content area */
     background-color: #f59038;
->>>>>>> treemap-redesign
 }
 
 header {
@@ -136,11 +131,7 @@ header h1 {
 }
 
 header p {
-<<<<<<< HEAD
-    color: var(--text-secondary);
-=======
-    color: #677172;
->>>>>>> treemap-redesign
+    color: #4b5253;
     font-size: 16px;
 }
 
