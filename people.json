@@ -3,32 +3,37 @@
     {
       "name": "Maryam Usman",
       "role": "Budget Breakdown Chair",
-      "image": "assets/penguin1.jpeg"
+      "image": "assets/maryamHeadshot.JPG"
     },
     {
       "name": "David Baker",
       "role": "Budget Breakdown Co-Chair",
-      "image": "assets/penguin1.jpeg"
+      "image": "assets/davidHeadshot.JPG"
     },
     {
       "name": "Colton Rupe",
       "role": "Programming Chair",
-      "image": "assets/penguin1.jpeg"
+      "image": "assets/coltonHeadshot.JPG"
     },
     {
       "name": "Divya Sakthivel",
       "role": "Budget Analyst Chair",
-      "image": "assets/penguin1.jpeg"
+      "image": "assets/divyaHeadshot.JPG"
     },
     {
       "name": "Fatimah Yousaf",
       "role": "Graphic Design & Marketing",
-      "image": "assets/penguin1.jpeg"
+      "image": "assets/fatimahHeadshot.JPG"
     },
     {
       "name": "Ashmita Senthil",
       "role": "Report Editing Chair",
-      "image": "assets/penguin1.jpeg"
+      "image": "assets/ashmitaHeadshot.JPG"
+    },
+    {
+      "name": "David Mwaria",
+      "role": "Secretary",
+      "image": "assets/davidMHeadshot.JPG"
     }
   ],
   "acknowledgments": [

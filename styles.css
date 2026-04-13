@@ -90,7 +90,7 @@ body {
     flex: 1; /* Takes up all remaining space */
     padding: 40px;
     overflow-y: auto; /* Allows scrolling ONLY inside the content area */
-    background-color: #E87500;
+    background-color: #f59038;
 }
 
 header {
@@ -104,7 +104,7 @@ header h1 {
 }
 
 header p {
-    color: #7f8c8d;
+    color: #677172;
     font-size: 16px;
 }
 
@@ -324,3 +324,49 @@ header p {
     text-align: center;
 }
 
+/* Specific styling for the logo icons */
+.link-icon {
+    width: 240px;          /* Limits the actual size of the image */
+    height: auto;         /* Maintains the aspect ratio */
+    padding: 10px;        /* Creates space inside the clickable area */
+    margin-right: 15px;   /* Creates space between multiple icons */
+    object-fit: contain;  /* Ensures the logo isn't stretched */
+}
+
+/* Container to handle overall alignment */
+.link-images, .pictures-grid {
+    padding: 10px 0;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Styling for headers when they aren't inside white boxes */
+.transparent-header {
+    color: white; /* Or var(--utd-green) if you prefer the dark green */
+    margin-bottom: 20px;
+    font-size: 24px;
+    border-left: 5px solid white;
+    padding-left: 15px;
+}
+
+.credits-flex-container {
+    display: flex;
+    gap: 80px;             /* Space between the IG logo and the penguin */
+    align-items: center;   /* Aligns the logo and the image vertically at their centers */
+    margin-top: 30px;
+}
+
+/* Update this section in styles.css */
+.gallery-img {
+    width: 300px;          /* Match the width of your IG logo */
+    height: 300px;         /* Optional: Set a fixed height for a perfect square */
+    border-radius: 8px;    /* Keeps the rounded corners */
+    border: 2px solid var(--utd-orange); /* Maintains the UTD branding border */
+    object-fit: cover;     /* Ensures the penguin isn't stretched even if you change dimensions */
+    transition: transform 0.3s ease; /* Keeps the hover effect smooth */
+}
+
+.gallery-img:hover {
+    transform: scale(1.05); /* Subtle zoom when hovering */
+}

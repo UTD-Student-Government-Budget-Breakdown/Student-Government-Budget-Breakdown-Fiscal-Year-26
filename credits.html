@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credits - UTD Budget</title>
-
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,6 +20,12 @@
                 <li><a href="aux-budget.html">Auxiliary Budget</a></li>
                 <li><a href="credits.html" class="active">Credits</a></li>
             </ul>
+
+            <div class="sidebar-footer">
+                <a href="https://sg.utdallas.edu/" target="_blank">
+                    <img src="assets/sgGavel26.png" alt="Student Government Logo" class="utd-logo">
+                </a>
+            </div>
         </nav>
 
         <main class="main-content">
@@ -33,17 +38,25 @@
                 <div class="credits-section">
                     <h2>Leadership</h2>
                     <div id="contributors-list" class="people-grid">
-                        <!-- Contributors will be loaded here from people.json -->
-                    </div>
+                        </div>
                 </div>
 
-                <div class="credits-section">
-                    <h2>Useful Links</h2>
-                    <div class="tech-list">
-                        <ul>
-                            <li><strong><a href="https://sg.utdallas.edu/" target="_blank">Student Government</a></strong></li>
-                            <li><strong><a href="https://finance.utdallas.edu/for-others/public-reports/" target="_blank">UTD Public Budget Information</a></strong></li>
-                        </ul>
+                    <div class="credits-flex-container">
+                        <div class="useful-links-box">
+                            <div class="link-images" id="social-links-container">
+                                </div>
+                        </div>
+
+                        <div class="pictures-box">
+                            <div class="pictures-grid">
+                                <img src="assets/buildABudget1.JPG" alt="Project Photo 1" class="gallery-img">
+                                <img src="assets/buildABudget2.JPG" alt="Build A Budget Project" class="gallery-img">
+                                <img src="assets/buildABudget4.JPG" alt="Build A Budget Project" class="gallery-img">
+                                <img src="assets/buildABudget6.JPG" alt="Build A Budget Project" class="gallery-img">
+                            </div>
+                        </div>
+                    </div>
+
                     </div>
                 </div>
             </section>
@@ -51,19 +64,15 @@
     </div>
 
     <script>
-        // Load people data from people.json
+        // Load Leadership data
         fetch('people.json')
             .then(response => response.json())
             .then(data => {
-                // Render contributors
                 const contributorsContainer = document.getElementById('contributors-list');
                 data.contributors.forEach(person => {
                     const card = document.createElement('div');
                     card.className = 'person-card';
-
-                    // Only create image HTML if image path exists
                     const imageHtml = person.image ? `<img src="${person.image}" alt="${person.name}" class="person-img">` : '';
-                    
                     card.innerHTML = `
                         ${imageHtml}
                         <h3>${person.name}</h3>
@@ -72,13 +81,28 @@
                     contributorsContainer.appendChild(card);
                 });
             })
-            .catch(error => {
-                console.error('Error loading people.json:', error);
-                document.getElementById('contributors-list').innerHTML =
-                    '<p class="error">Unable to load contributors data.</p>';
-                document.getElementById('acknowledgments-list').innerHTML =
-                    '<p class="error">Unable to load acknowledgments data.</p>';
-            });
+            .catch(error => console.error('Error loading people.json:', error));
+
+        // Load Social Links data
+        fetch('logos.json')
+            .then(response => response.json())
+            .then(data => {
+                const linksContainer = document.getElementById('social-links-container');
+                data.social_links.forEach(link => {
+                    const anchor = document.createElement('a');
+                    anchor.href = link.url;
+                    anchor.target = "_blank";
+                    
+                    const img = document.createElement('img');
+                    img.src = link.icon;
+                    img.alt = link.name;
+                    img.className = 'link-icon';
+                    
+                    anchor.appendChild(img);
+                    linksContainer.appendChild(anchor);
+                });
+            })
+            .catch(error => console.error('Error loading logos.json:', error));
     </script>
 </body>
 </html>
