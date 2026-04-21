@@ -131,7 +131,7 @@ header h1 {
 }
 
 header p {
-    color: #4b5253;
+    color: #ffffff;
     font-size: 16px;
 }
 
@@ -148,7 +148,7 @@ header p {
 .chart-card {
     background-color: var(--bg-card);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
     padding: 25px;
     border: 1px solid var(--border-light);
 }
@@ -257,7 +257,7 @@ header p {
 .credits-section {
     background-color: var(--bg-card);
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
     padding: 30px;
     border: 1px solid var(--border-light);
 }
@@ -389,4 +389,114 @@ header p {
 
 .gallery-img:hover {
     transform: scale(1.05); /* Subtle zoom when hovering */
+}
+
+/* =========================================
+   6. MOBILE RESPONSIVENESS (Media Queries)
+   ========================================= */
+
+@media screen and (max-width: 768px) {
+    /* 1. Change layout from side-by-side to vertical stack */
+    .container {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    body {
+        overflow-y: auto; /* Allow the entire page to scroll on mobile */
+    }
+
+    /* 2. Make the sidebar a top navigation bar */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        position: relative;
+    }
+
+    .sidebar h2 {
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+
+    /* Horizontal scroll for menu items if they are too long */
+    .sidebar ul {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+    }
+
+    .sidebar ul li {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .sidebar a {
+        font-size: 14px;
+        padding: 8px 12px;
+        white-space: nowrap;
+    }
+
+    /* Hide the gavel logo on small mobile screens to save space */
+    .sidebar-footer {
+        display: none;
+    }
+
+    /* 3. Adjust Main Content padding */
+    .main-content {
+        padding: 20px;
+        overflow-y: visible; /* Let the container handle scrolling */
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    /* 4. Make charts fit mobile screens */
+    .chart-card {
+        padding: 15px;
+    }
+
+    /* Adjust height of specific charts for mobile viewing */
+    #chart_Operating_Revenue26, #chart_Non-operating_Revenue26, #chart_Expense26,
+    #housingChart, #urecChart, #parkingChart, #treemapChart {
+        height: 400px; /* Slightly shorter for mobile */
+    }
+
+    /* Ensure complex charts like BOT have enough room */
+    #chart_budget_over_time_operating_revenue,
+    #chart_budget_over_time_non_operating_revenue, 
+    #chart_budget_over_time_expense {
+        height: 800px;
+    }
+
+    /* 5. Responsive Credits and Photos */
+    .people-grid {
+        grid-template-columns: 1fr; /* Single column for headshots */
+    }
+
+    .credits-flex-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .gallery-img {
+        width: 100%; /* Photos take full width of card */
+        height: auto;
+    }
+
+    .link-icon {
+        width: 150px; /* Scale down Instagram/Logo icons */
+    }
+
+    /* 6. Ensure the data table can scroll horizontally */
+    .fees-table-wrap {
+        margin: 0 -15px; /* Pull to edges */
+        padding: 0 15px;
+    }
+    
+    .fees-row {
+        font-size: 12px; /* Smaller text for compact view */
+    }
 }
