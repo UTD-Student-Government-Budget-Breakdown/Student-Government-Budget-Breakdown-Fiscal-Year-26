@@ -16,18 +16,30 @@
     --palette-dark-red:   #bb0b0b;
     --palette-crimson:    #b10026;
 
-    /* Branding */
-    --utd-green:       #154734;
-    --utd-orange:      #E87500;
-    --utd-orange-dark: #C66300;
+    /* UTD Color Pallete */
+    --color-sage-green: #499987;
+    --color-forest-dark: #12584c;
+    --color-bronze: #cb762d;
+    --color-gold-sand:  #eebc59;
+    --color-moss-light: #88be95;
+    --color-ivory: #ffffff;
+    --color-terracotta: #cb492d;
 
-    /* UI tokens */
+    /* Major UI tokens*/
+    --sidebar-color: #eebc59;
+    --utd-orange:      #E87500;
+    --sidebar-hover-color: #88be95;
+    --background-color: #88be95;
+    --title-text: #ffffff;
+    --main-header: #ffffff;
+
+    /* Minor UI tokens */
     --bg-page:         #f4f6f8;
     --bg-card:         #ffffff;
     --text-primary:    #2c3e50;
     --text-secondary:  #7f8c8d;
     --text-muted:      #51616f;
-    --text-sidebar:    #bdc3c7;
+    --text-sidebar:    var(--text-primary);
     --border-light:    #e1e4e8;
     --accent-blue:     var(--palette-blue);
     --accent-teal:     var(--palette-teal);
@@ -60,7 +72,7 @@ body {
 
 .sidebar {
     width: 250px;
-    background-color: var(--utd-green);
+    background-color: var(--sidebar-color);
     color: white;
     display: flex;
     flex-direction: column;
@@ -74,6 +86,7 @@ body {
     font-size: 24px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 15px;
+    color: var(--title-text); 
 }
 
 .sidebar ul {
@@ -95,7 +108,7 @@ body {
 }
 
 .sidebar a:hover, .sidebar a.active {
-    background-color: var(--utd-orange-dark);
+    background-color: var(--sidebar-hover-color);
     color: var(--bg-card);
     padding-left: 20px;
 }
@@ -117,7 +130,7 @@ body {
     flex: 1;
     padding: 40px;
     overflow-y: auto; /* Allows scrolling ONLY inside the content area */
-    background-color: #f59038;
+    background-color: var(--background-color);
 }
 
 header {
@@ -126,7 +139,7 @@ header {
 
 header h1 {
     font-size: 32px;
-    color: var(--text-primary);
+    color: var(--main-header);
     margin-bottom: 5px;
 }
 
@@ -151,6 +164,7 @@ header p {
     box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
     padding: 25px;
     border: 1px solid var(--border-light);
+    margin-bottom: 100px; /* Gap Between Graph Cards*/
 }
 
 .chart-card h3 {
@@ -353,6 +367,11 @@ header p {
     object-fit: contain;  /* Ensures the logo isn't stretched */
 }
 
+.link-icon:hover {
+    transform: scale(1.1); /* Slightly enlarges the logo, like the gavel */
+    filter: brightness(1.2); /* Makes the logo pop slightly on hover */
+}
+
 /* Container to handle overall alignment */
 .link-images, .pictures-grid {
     padding: 10px 0;
@@ -363,7 +382,7 @@ header p {
 
 /* Styling for headers when they aren't inside white boxes */
 .transparent-header {
-    color: white; /* Or var(--utd-green) if you prefer the dark green */
+    color: white; /* Or var(--sidebar-color) if you prefer the dark green */
     margin-bottom: 20px;
     font-size: 24px;
     border-left: 5px solid white;
